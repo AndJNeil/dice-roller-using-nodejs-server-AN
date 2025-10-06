@@ -49,7 +49,7 @@ app.get('/api/no-cors', (req, res) => {
   });
 });
 
-// Home page with API tester
+//  Home page with API tester
 app.get('/', (req, res) => {
   res.send(`
     <!DOCTYPE html>
