@@ -1,0 +1,20 @@
+{
+  "name": "dice-roller-using-node.js-ajn",
+  "version": "1.0.0",
+  "description": "nodejs app for dice roller",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndJNeil/dice-roller-using-node.js-AJN.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndJNeil/dice-roller-using-node.js-AJN/issues"
+  },
+  "homepage": "https://github.com/AndJNeil/dice-roller-using-node.js-AJN#readme"
+}

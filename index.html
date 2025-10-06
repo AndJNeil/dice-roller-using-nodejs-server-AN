@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Tester</title>
+</head>
+<body>
+    <h1>Dice Roller API Tester</h1>
+    
+    <h2>Test Wake</h2>
+    <button onclick="testWake()">Test /api/wake</button>
+    <p id="result-wake"></p>
+
+    <h2>Test Random</h2>
+    <button onclick="testRandom()">Test /api/random</button>
+    <p id="result-random"></p>
+
+    <h2>Test Roll</h2>
+    <input type="number" id="sides" value="6">
+    <button onclick="testRoll()">Test /api/roll</button>
+    <p id="result-roll"></p>
+
+    <h2>Test CORS Failure</h2>
+    <button onclick="testCORS()">Test /api/no-cors</button>
+    <p id="result-cors"></p>
+
+    <script>
+        // Detect if we're running locally or on server
+        const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+            ? 'http://localhost:3000' 
+            : window.location.origin;
+
+        async function testWake() {
+            try {
+                const response = await fetch(`${API_BASE}/api/wake`);
+                const data = await response.json();
+                document.getElementById('result-wake').textContent = JSON.stringify(data);
+            } catch (error) {
+                document.getElementById('result-wake').textContent = 'Error: ' + error.message;
+            }
+        }
+
+        async function testRandom() {
+            try {
+                const response = await fetch(`${API_BASE}/api/random`);
+                const data = await response.json();
+                document.getElementById('result-random').textContent = JSON.stringify(data);
+            } catch (error) {
+                document.getElementById('result-random').textContent = 'Error: ' + error.message;
+            }
+        }
+
+        async function testRoll() {
+            try {
+                const sides = document.getElementById('sides').value;
+                const response = await fetch(`${API_BASE}/api/roll/${sides}`);
+                const data = await response.json();
+                document.getElementById('result-roll').textContent = JSON.stringify(data);
+            } catch (error) {
+                document.getElementById('result-roll').textContent = 'Error: ' + error.message;
+            }
+        }
+
+        async function testCORS() {
+            try {
+                const response = await fetch(`${API_BASE}/api/no-cors`);
+                const data = await response.json();
+                document.getElementById('result-cors').textContent = JSON.stringify(data);
+            } catch (error) {
+                document.getElementById('result-cors').textContent = 'CORS Error (expected): ' + error.message;
+            }
+        }
+
+        // Test on page load
+        window.addEventListener('load', testWake);
+    </script>
+</body>
+</html>
